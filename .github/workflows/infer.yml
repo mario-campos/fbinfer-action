@@ -12,18 +12,14 @@ jobs:
         with:
           repository: facebook/infer
 
-      - run: tree -L 2
-
       - name: Install dependencies for Ubuntu Linux
         run: sudo apt-get update && sudo apt-get install opam pkg-config clang autoconf automake cmake ninja-build
 
       - name: Compile Infer
         run: ./build-infer.sh clang
-        working-directory: ${{ github.workspace }}/infer
 
       - name: Install Infer
         run: sudo make install
-        working-directory: ${{ github.workspace }}/infer
 
       - name: Print infer version number
         run: echo "::debug::$(infer --version)"
