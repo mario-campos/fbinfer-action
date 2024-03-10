@@ -5,13 +5,13 @@ on:
   workflow_call:
 
 jobs:
-  infer-run:
+  setup:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
       - name: Install dependencies for Ubuntu Linux
-        run: sudo apt install opam pkg-config clang autoconf automake cmake ninja
+        run: sudo apt-get update && sudo apt-get install opam pkg-config clang autoconf automake cmake ninja-build
 
       - name: Checkout Infer
         uses: actions/checkout@v3
