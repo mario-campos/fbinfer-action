@@ -20,10 +20,11 @@ jobs:
 
       - name: Compile Infer
         run: ./build-infer.sh clang
-        working-directory: infer
+        working-directory: ${{ github.workspace }}/infer
 
       - name: Install Infer
         run: sudo make install
+        working-directory: ${{ github.workspace }}/infer
 
       - name: Print infer version number
         run: echo "::debug::$(infer --version)"
