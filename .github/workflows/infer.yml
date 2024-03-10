@@ -9,14 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          repository: facebook/infer
+
+      - run: tree -L2
 
       - name: Install dependencies for Ubuntu Linux
         run: sudo apt-get update && sudo apt-get install opam pkg-config clang autoconf automake cmake ninja-build
-
-      - name: Checkout Infer
-        uses: actions/checkout@v3
-        with:
-          repository: facebook/infer
 
       - name: Compile Infer
         run: ./build-infer.sh clang
