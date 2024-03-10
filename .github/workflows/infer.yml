@@ -1,0 +1,29 @@
+name: infer
+
+on:
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  infer-run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies for Ubuntu Linux
+        run: sudo apt install opam pkg-config clang autoconf automake cmake ninja
+
+      - name: Checkout Infer
+        uses: actions/checkout@v3
+        with:
+          repository: facebook/infer
+
+      - name: Compile Infer
+        run: ./build-infer.sh clang
+        working-directory: infer
+
+      - name: Install Infer
+        run: sudo make install
+
+      - name: Print infer version number
+        run: echo "::debug::$(infer --version)"
