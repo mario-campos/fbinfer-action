@@ -16,7 +16,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install opam pkg-config clang autoconf automake cmake ninja-build
 
       - name: Compile Infer
-        run: ./build-infer.sh clang
+        run: ./build-infer.sh --yes clang
 
       - name: Install Infer
         run: sudo make install
